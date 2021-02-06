@@ -1,0 +1,1 @@
+set arch=x86

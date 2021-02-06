@@ -2,11 +2,12 @@
 
 
 set MSVCVER=2019
-set QTVER=5.14.1
-set SSLVER=1.1.1d
+set QTVER=5.15.2
+set SSLVER=1.1.1i
+set QTWEBKIT_VER=5.212
 set PREFIX=C:\Qt
 set EXTRABUILDOPTIONS=-qt-sqlite
-set PATH=C:\Python\;C:\Python27\;C:\Strawberry\perl\bin;%PATH%
+set PATH=C:\Strawberry\perl\bin;%PATH%
 
 
 REM DO NOT EDIT BELOW THIS LINE
@@ -15,7 +16,7 @@ set STARTDIR=%CD%
 set SRCDIR=%CD%\sources
 set BUILDDIR=%CD%\build
 set PLATFORM=win32-msvc%MSVCVER%
-set QTINSTALLDIR=%PREFIX%\%QTVER%\msvc%MSVCVER%-%VSCMD_ARG_TGT_ARCH%-static
+set QTINSTALLDIR=%PREFIX%\%QTVER%\msvc%MSVCVER%_%VSCMD_ARG_TGT_ARCH%_static
 
 set QTRELEASE=official
 for %%A in (alpha beta rc) DO (echo.%QTVER% | find /I "%%A">Nul && set QTRELEASE=development)

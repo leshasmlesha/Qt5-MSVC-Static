@@ -21,6 +21,10 @@ IF NOT "%1"=="" (
         set EXTNAME=%2
         call tools\build_qt_extras.bat
     )
+	IF "%1"=="qtwebkit" (
+        set EXTNAME=%1
+        call tools\build_qtwebkit.bat
+    )
 
 ) ELSE (
     echo **Available commands**

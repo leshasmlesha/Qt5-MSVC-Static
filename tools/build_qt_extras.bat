@@ -22,15 +22,15 @@ IF NOT "%EXTNAME%" == "" (
     cd %EXTPATH% ||  exit /b %errorlevel%
 
     echo Configuring %EXTNAME%...
-    start /W "Configuring %EXTNAME%" %QMAKE% || exit /b %errorlevel%
+    %QMAKE%
     IF %errorlevel% NEQ 0 exit /b %errorlevel%
 
     echo Building %EXTNAME%...
-    start /W /BELOWNORMAL "Building %EXTNAME%..." jom clean all
+    jom
     IF %errorlevel% NEQ 0 exit /b %errorlevel%
 
     echo Installing %EXTNAME%...
-    start /W /BELOWNORMAL "Installing %EXTNAME%..." jom install
+    jom install
     IF %errorlevel% NEQ 0 exit /b %errorlevel%
 
     echo %EXTNAME% installed
