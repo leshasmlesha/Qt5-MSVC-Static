@@ -48,7 +48,7 @@ class QtWebKitConan(ConanFile):
         "qt_version": None,
 
         "icu:shared": False,
-        "icu:data_packaging": "library",
+        "icu:data_packaging": "static",
 
         "libxml2:shared": False,
         "libxml2:iconv": False,
@@ -164,15 +164,17 @@ class QtWebKitConan(ConanFile):
 
     def imports(self):
         if self.settings.os == 'Windows':
-            self.copy("icudt65.dll", "./bin", "bin")
-            self.copy("icuin65.dll", "./bin", "bin")
-            self.copy("icuuc65.dll", "./bin", "bin")
             # Visual Studio
-            self.copy("libxml2.dll", "./bin", "bin")
-            self.copy("libxslt.dll", "./bin", "bin")
-            # MinGW
-            self.copy("libxml2-2.dll", "./bin", "bin")
-            self.copy("libxslt-1.dll", "./bin", "bin")
+            self.copy("sicuuc.lib", "./lib", "lib")
+            self.copy("sicudt.lib", "./lib", "lib")
+            self.copy("sicuin.lib", "./lib", "lib")
+            self.copy("libxml2_a.lib", "./lib", "lib")
+            self.copy("libxslt_a.lib", "./lib", "lib")
+            self.copy("sqlite3.lib", "./lib", "lib")
+            self.copy("zlib.lib", "./lib", "lib")
+            self.copy("jpeg-static.lib", "./lib", "lib")
+            self.copy("libpng16.lib", "./lib", "lib")
+            self.copy("webp", "./lib", "lib")
 
     def package(self):
         pass
