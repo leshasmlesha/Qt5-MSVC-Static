@@ -1,6 +1,6 @@
 @echo off
 setlocal
-
+call arch.cmd
 call tools\options.bat
 
 IF NOT "%1"=="" (
@@ -9,6 +9,7 @@ IF NOT "%1"=="" (
         call tools\download.bat
     )
     IF "%1"=="setup" (
+	    set if_debug=%2
         call tools\setup_qt.bat
     )
     IF "%1"=="build" (
@@ -23,7 +24,11 @@ IF NOT "%1"=="" (
     )
 	IF "%1"=="qtwebkit" (
         set EXTNAME=%1
+		set if_debug=%2
         call tools\build_qtwebkit.bat
+    )
+	IF "%1"=="pack" (
+		7z a qt%QTVER%_msvc2019_%arch%_static.7z %QTINSTALLDIR%
     )
 
 ) ELSE (
