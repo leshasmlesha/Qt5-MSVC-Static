@@ -34,6 +34,15 @@ jobs:
     - name: Setup Arch
       shell: cmd
       run: echo set arch=x64> arch.cmd
+
+    - name: Install Python 3
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.9'
+    
+    - name: Setup Conan
+      shell: cmd
+      run: qt conan
     
     - name: Set multicore build
       shell: cmd
@@ -72,14 +81,6 @@ jobs:
     - name: build Component Qt Webchannel
       shell: cmd
       run: qt extra qtwebchannel
-      
-    - name: Install Python 3
-      uses: actions/setup-python@v1
-      with:
-        python-version: '3.9'
-
-    - name: Install dependencies (Conan)
-      run: pip3 install conan
 
     - name: Build qtwebkit (MSVC)
       shell: cmd

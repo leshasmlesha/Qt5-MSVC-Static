@@ -32,8 +32,6 @@ IF NOT "%EXTNAME%" == "" (
 	cd %EXTPATH% ||  exit /b %errorlevel%
 
 	echo Configuring %EXTNAME%...
-	pip3 install conan
-	conan profile new --detect default
 	IF %errorlevel% NEQ 0 exit /b %errorlevel%
 
 	echo Building/Installing %EXTNAME%...

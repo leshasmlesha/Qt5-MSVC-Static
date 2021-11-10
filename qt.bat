@@ -22,6 +22,9 @@ IF NOT "%1"=="" (
         set EXTNAME=%2
         call tools\build_qt_extras.bat
     )
+    IF "%1"=="conan" (
+        call tools\setup_conan.bat
+    )
 	IF "%1"=="qtwebkit" (
         set EXTNAME=%1
 		set if_debug=%2

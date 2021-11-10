@@ -3,7 +3,7 @@
 
 set MSVCVER=2019
 set QTVER=5.15.2
-set SSLVER=1.1.1i
+set SSLVER=1.1.1l
 set QTWEBKIT_VER=5.212
 set PREFIX=C:\Qt
 set EXTRABUILDOPTIONS=-qt-sqlite
