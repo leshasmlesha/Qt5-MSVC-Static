@@ -38,8 +38,7 @@ SOURCES += \
     $$PWD/qwindowsdialoghelpers.cpp \
     $$PWD/qwindowsservices.cpp \
     $$PWD/qwindowsnativeinterface.cpp \
-    $$PWD/qwindowsopengltester.cpp \
-    $$PWD/qwin10helpers.cpp
+    $$PWD/qwindowsopengltester.cpp
 
 HEADERS += \
     $$PWD/qwindowscombase.h \
@@ -63,8 +62,7 @@ HEADERS += \
     $$PWD/qwindowsservices.h \
     $$PWD/qwindowsnativeinterface.h \
     $$PWD/qwindowsopengltester.h \
-    $$PWD/qwindowsthreadpoolrunner.h \
-    $$PWD/qwin10helpers.h
+    $$PWD/qwindowsthreadpoolrunner.h
 
 INCLUDEPATH += $$PWD
 

@@ -48,7 +48,6 @@
 #include "qwindowsintegration.h"
 #include "qwindowsmime.h"
 #include "qwindowstheme.h"
-#include "qwin10helpers.h"
 
 #include <QtGui/qwindow.h>
 #include <QtGui/qopenglcontext.h>
@@ -281,10 +280,6 @@ QFont QWindowsNativeInterface::logFontToQFont(const void *logFont, int verticalD
 
 bool QWindowsNativeInterface::isTabletMode()
 {
-#if QT_CONFIG(clipboard)
-    if (const QWindowsClipboard *clipboard = QWindowsClipboard::instance())
-        return qt_windowsIsTabletMode(clipboard->clipboardViewer());
-#endif
     return false;
 }
 
