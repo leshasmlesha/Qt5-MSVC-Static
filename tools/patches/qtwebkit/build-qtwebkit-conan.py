@@ -124,7 +124,10 @@ def create_profile(compiler, arch):
         if arch == 'x86_64':
             profile.update('compiler.exception', 'seh')
             
-    profile.update('compiler.runtime', 'MT')
+    if args.build_type == "Debug":
+        profile.update('compiler.runtime', 'MTd')
+    else:
+        profile.update('compiler.runtime', 'MT')
 
     return profile.name
 

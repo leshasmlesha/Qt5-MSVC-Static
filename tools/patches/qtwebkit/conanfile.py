@@ -81,8 +81,8 @@ class QtWebKitConan(ConanFile):
             self.build_requires("bison_installer/3.3.2@bincrafters/stable")
         if not tools.which("flex"):
             self.build_requires("flex_installer/2.6.4@bincrafters/stable")
-        if not tools.which("ninja"):
-            self.build_requires("ninja/[>=1.9.0]")
+        #if not tools.which("ninja"):
+        self.build_requires("ninja/[>=1.9.0]")
         if not tools.which("cmake"):
             self.build_requires("cmake/[>=3.18.2]")
 
@@ -113,7 +113,7 @@ class QtWebKitConan(ConanFile):
                 self.requires("libjpeg-turbo/" + dep["libjpeg-turbo"] + "@qtproject/stable")
                 self.requires("libpng/" + dep["libpng"])
             else:
-                self.requires("sqlite3/3.32.3")
+                self.requires("sqlite3/3.33.0")
                 self.requires("libpng/1.6.37")
                 self.requires("libjpeg-turbo/2.0.5@qtproject/stable")
 
@@ -140,6 +140,9 @@ class QtWebKitConan(ConanFile):
             cmake_flags = shlex.split(str(self.options.cmakeargs))
         else:
             cmake_flags = None
+
+        if "CONAN_CPU_COUNT" in os.environ:
+            os.environ['NINJAFLAGS'] = '-j ' + os.environ['CONAN_CPU_COUNT']
 
         if "NINJAFLAGS" in os.environ:
             parser = argparse.ArgumentParser()
@@ -174,7 +177,7 @@ class QtWebKitConan(ConanFile):
             self.copy("zlib.lib", "./lib", "lib")
             self.copy("jpeg-static.lib", "./lib", "lib")
             self.copy("libpng16.lib", "./lib", "lib")
-            self.copy("webp", "./lib", "lib")
+            self.copy("webp.lib", "./lib", "lib")
 
     def package(self):
         pass

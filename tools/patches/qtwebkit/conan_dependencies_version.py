@@ -37,7 +37,7 @@ dependencies = {
     "5.14.2": { "sqlite": "3.31.1", "libpng": "1.6.37", "libjpeg-turbo": "2.0.3" },
     "5.15.0": { "sqlite": "3.31.1", "libpng": "1.6.37", "libjpeg-turbo": "2.0.4" },
     "5.15.1": { "sqlite": "3.32.3", "libpng": "1.6.37", "libjpeg-turbo": "2.0.5" },
-    "5.15.2": { "sqlite": "3.32.3", "libpng": "1.6.37", "libjpeg-turbo": "2.0.5" },
+    "5.15.2": { "sqlite": "3.33.0", "libpng": "1.6.37", "libjpeg-turbo": "2.0.5" },
 }
 
 
