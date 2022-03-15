@@ -27,19 +27,12 @@ md %QTBUILDDIR%
 cd %QTBUILDDIR%  ||  exit /b %errorlevel%
 
 echo Configuring Qt...
-if "%if_debug%" == "debug" (
 %QTDIR%\configure.bat -prefix %QTINSTALLDIR% -platform %PLATFORM% ^
--opensource -debug -confirm-license -no-opengl -static -static-runtime ^
+-debug-and-release -confirm-license -static -static-runtime ^
 -qt-libpng -qt-libjpeg -qt-zlib -qt-pcre -no-compile-examples -nomake examples -nomake tests ^
+ -optimize-size ^
  %EXTRABUILDOPTIONS% ^
 -openssl-linked OPENSSL_PREFIX=%SSLINSTALLDIR%
-) else (
-%QTDIR%\configure.bat -prefix %QTINSTALLDIR% -platform %PLATFORM% ^
--opensource -release -confirm-license -no-opengl -static -static-runtime ^
--qt-libpng -qt-libjpeg -qt-zlib -qt-pcre -no-compile-examples -nomake examples -nomake tests ^
--optimize-size %EXTRABUILDOPTIONS% ^
--openssl-linked OPENSSL_PREFIX=%SSLINSTALLDIR%
-)
 IF %errorlevel% NEQ 0 exit /b %errorlevel%
 
 echo Configuration complete
