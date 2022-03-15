@@ -10,8 +10,6 @@ IF exist %SSLINSTALLDIR% (
 )
 
 IF exist %QTDIR% (
-	copy /y Tools\patches\qtbase\qwindowsnativeinterface.cpp %QTDIR%\src\plugins\platforms\windows\qwindowsnativeinterface.cpp
-	copy /y Tools\patches\qtbase\windows.pri %QTDIR%\src\plugins\platforms\windows\windows.pri
     cd %QTDIR%
 ) ELSE ( 
     echo Could not find Qt sources in %QTDIR%
@@ -27,12 +25,14 @@ md %QTBUILDDIR%
 cd %QTBUILDDIR%  ||  exit /b %errorlevel%
 
 echo Configuring Qt...
-%QTDIR%\configure.bat -prefix %QTINSTALLDIR% -platform %PLATFORM% ^
--debug-and-release -confirm-license -static -static-runtime ^
--qt-libpng -qt-libjpeg -qt-zlib -qt-pcre -no-compile-examples -nomake examples -nomake tests ^
- -optimize-size ^
- %EXTRABUILDOPTIONS% ^
--openssl-linked OPENSSL_PREFIX=%SSLINSTALLDIR%
+set OPENSSL_ROOT_DIR=%SSLINSTALLDIR%
+%QTDIR%\configure.bat -prefix %QTINSTALLDIR% ^
+-platform %PLATFORM% ^
+-debug-and-release ^
+-static -static-runtime ^
+-nomake examples -nomake tests ^
+-optimize-size %EXTRABUILDOPTIONS% ^
+-openssl-linked
 IF %errorlevel% NEQ 0 exit /b %errorlevel%
 
 echo Configuration complete

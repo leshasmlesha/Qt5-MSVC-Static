@@ -4,11 +4,11 @@ setlocal
 cd %QTBUILDDIR% ||  exit /b %errorlevel%
 
 echo Building Qt...
-jom
+ninja
 IF %errorlevel% NEQ 0 exit /b %errorlevel%
 
 echo Installing Qt...
-jom install
+ninja install
 IF %errorlevel% NEQ 0 exit /b %errorlevel%
 
 echo Qt sucessfully installed

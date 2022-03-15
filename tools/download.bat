@@ -7,7 +7,7 @@ cd %SRCDIR% ||  exit /b %errorlevel%
 
 echo Downloading %QTURL%
 curl %CURLOPTS% %QTURL% 
-7z %ZOPTS% qtbase-everywhere-opensource-src-%QTVER%.zip || exit /b %errorlevel%
+7z %ZOPTS% qtbase-everywhere-src-%QTVER%.zip || exit /b %errorlevel%
 
 echo Downloading %SSLURL%
 curl %CURLOPTS% %SSLURL%

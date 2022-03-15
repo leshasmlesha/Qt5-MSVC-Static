@@ -9,7 +9,6 @@ IF NOT "%1"=="" (
         call tools\download.bat
     )
     IF "%1"=="setup" (
-	    set if_debug=%2
         call tools\setup_qt.bat
     )
     IF "%1"=="build" (
@@ -27,7 +26,6 @@ IF NOT "%1"=="" (
     )
 	IF "%1"=="qtwebkit" (
         set EXTNAME=%1
-		set if_debug=%2
         call tools\build_qtwebkit.bat
     )
 	IF "%1"=="pack" (
