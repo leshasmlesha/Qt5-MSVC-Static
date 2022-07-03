@@ -1,9 +1,9 @@
 @echo off
 
 
-set MSVCVER=2019
+set MSVCVER=2022
 set QTVER=5.15.2
-set SSLVER=1.1.1l
+set SSLVER=1.1.1p
 set QTWEBKIT_VER=5.212
 set PREFIX=C:\Qt
 set EXTRABUILDOPTIONS=-qt-sqlite
