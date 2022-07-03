@@ -21,7 +21,7 @@ set QTINSTALLDIR=%PREFIX%\%QTVER%\msvc%MSVCVER%_%VSCMD_ARG_TGT_ARCH%_static
 set QTRELEASE=official
 for %%A in (alpha beta rc) DO (echo.%QTVER% | find /I "%%A">Nul && set QTRELEASE=development)
 
-set QTURL=http://download.qt.io/%QTRELEASE%_releases/qt/%QTVER:~0,-2%/%QTVER%/submodules/qtbase-everywhere-src-%QTVER%.zip
+set QTURL=https://mirror.netcologne.de/qtproject/%QTRELEASE%_releases/qt/%QTVER:~0,-2%/%QTVER%/submodules/qtbase-everywhere-src-%QTVER%.zip
 set QTDIR=%SRCDIR%\qtbase-everywhere-src-%QTVER%
 set QTBUILDDIR=%QTDIR%\build
 

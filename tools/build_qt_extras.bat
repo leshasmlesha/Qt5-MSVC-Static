@@ -9,7 +9,7 @@ IF NOT "%EXTNAME%" == "" (
     echo PATH: %EXTPATH%
     echo QMAKE: %QMAKE%
 
-    set URL=http://download.qt.io/%QTRELEASE%_releases/qt/%QTVER:~0,-2%/%QTVER%/submodules/%EXTNAME%-everywhere-src-%QTVER%.zip
+    set URL=https://mirror.netcologne.de/qtproject/%QTRELEASE%_releases/qt/%QTVER:~0,-2%/%QTVER%/submodules/%EXTNAME%-everywhere-src-%QTVER%.zip
 
     cd %SRCDIR%
     echo Downloading !URL!
