@@ -14,6 +14,17 @@ IF NOT "%EXTNAME%" == "" (
 	cd %EXTPATH%
 	echo Downloading !URL!
 	git clone --depth 10 -b qtwebkit-5.212 !URL! .
+	
+	copy /y Tools\patches\qtwebkit\build-qtwebkit-conan.py %EXTPATH%\Tools\qt\build-qtwebkit-conan.py
+	copy /y Tools\patches\qtwebkit\conan_dependencies_version.py %EXTPATH%\Tools\qt\conan_dependencies_version.py
+	copy /y Tools\patches\qtwebkit\conanfile.py %EXTPATH%\Tools\qt\conanfile.py
+	copy /y Tools\patches\qtwebkit\FindLibXslt.cmake %EXTPATH%\Source\cmake\FindLibXslt.cmake
+	copy /y Tools\patches\qtwebkit\FindLibXml2.cmake %EXTPATH%\Source\cmake\FindLibXml2.cmake
+	copy /y Tools\patches\qtwebkit\FindICU.cmake %EXTPATH%\Source\cmake\FindICU.cmake
+	copy /y Tools\patches\qtwebkit\FindJPEG.cmake %EXTPATH%\Source\cmake\FindJPEG.cmake
+	copy /y Tools\patches\qtwebkit\OptionsQt.cmake %EXTPATH%\Source\cmake\OptionsQt.cmake
+	copy /y Tools\patches\qtwebkit\PlatformQt.cmake %EXTPATH%\Source\WebKit\PlatformQt.cmake
+
 
 	cd %EXTPATH% ||  exit /b %errorlevel%
 

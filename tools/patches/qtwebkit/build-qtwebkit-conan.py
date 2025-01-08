@@ -29,6 +29,8 @@ import pathlib
 import platform
 import sys
 import subprocess
+from conans.client.conf.detect import _get_default_compiler
+from conans.client.output import ConanOutput
 
 
 def run_command(command):
@@ -91,7 +93,16 @@ def get_cc_cxx(compiler):
 def create_profile(compiler, arch):
     if not compiler:
         if platform.system() == "Windows":
-            compiler = "msvc"
+            detected_toolchain = _get_default_compiler(ConanOutput(sys.stdout))
+            if not detected_toolchain:
+                sys.exit("Error: No toolchain detected")
+
+            detected_compiler = detected_toolchain[0]
+            if detected_compiler == "Visual Studio":
+                compiler = "msvc"
+            else:
+                compiler = detected_compiler
+
         elif platform.system() == "Darwin":
             compiler = "clang"
         elif platform.system() == "Linux":
@@ -123,7 +134,7 @@ def create_profile(compiler, arch):
             profile.update('compiler.exception', 'dwarf2')
         if arch == 'x86_64':
             profile.update('compiler.exception', 'seh')
-            
+
     if args.build_type == "Debug":
         profile.update('compiler.runtime', 'MTd')
     else:
@@ -195,8 +206,8 @@ conanfile_path = os.path.join(src_directory, "Tools", "qt", "conanfile.py")
 
 print("Path of build directory:" + build_directory)
 
-run_command("conan remote add -f bincrafters https://bincrafters.jfrog.io/artifactory/api/conan/public-conan")
-#run_command("conan remote add -f qtproject https://qtpkgtest.jfrog.io/artifactory/api/conan/coin-ci-provisioning --insert")
+run_command("conan remote add -f bincrafters https://api.bintray.com/conan/bincrafters/public-conan")
+run_command("conan remote add -f qtproject https://api.bintray.com/conan/qtproject/conan --insert")
 
 if args.profile and args.compiler:
     sys.exit("Error: --compiler and --profile cannot be specified at the same time")

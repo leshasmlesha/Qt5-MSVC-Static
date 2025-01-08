@@ -141,9 +141,6 @@ class QtWebKitConan(ConanFile):
         else:
             cmake_flags = None
 
-        if "CONAN_CPU_COUNT" in os.environ:
-            os.environ['NINJAFLAGS'] = '-j ' + os.environ['CONAN_CPU_COUNT']
-
         if "NINJAFLAGS" in os.environ:
             parser = argparse.ArgumentParser()
             parser.add_argument('-j', default=None, type=int)
