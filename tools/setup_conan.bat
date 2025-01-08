@@ -1,7 +1,8 @@
 cd sources
-pip3 install conan
+pip3 install "conan<2.0"
 conan profile new --detect default
-conan remote add -f bincrafters https://bincrafters.jfrog.io/artifactory/api/conan/public-conan
+conan remote add -f conan https://center.conan.io
+conan remote add -f nrel https://conan.openstudio.net/artifactory/api/conan/openstudio
 conan config set general.revisions_enabled=1
 curl https://codeload.github.com/qtwebkit/conan-icu/zip/refs/heads/stable/65.1 -o icu.zip
 curl https://codeload.github.com/qtwebkit/conan-libxml2/zip/refs/heads/stable/2.9.10 -o libxml2.zip

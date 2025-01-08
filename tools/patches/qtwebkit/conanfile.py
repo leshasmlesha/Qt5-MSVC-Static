@@ -65,22 +65,15 @@ class QtWebKitConan(ConanFile):
     }
 
     def build_requirements(self):
-        if self.settings.os == 'Linux':
-            if not tools.which('pkg-config'):
-                self.build_requires(
-                    'pkg-config_installer/0.29.2@bincrafters/stable')
-
-        if self.settings.os == 'Windows': # TODO: Fix msys perl or at least allow using non-msys one from PATH
-            self.build_requires("strawberryperl/5.30.0.1")
 
         if not tools.which("gperf"):
-            self.build_requires("gperf_installer/3.1@conan/stable")
+            self.build_requires("gperf/3.1")
         if not tools.which("ruby"):
-            self.build_requires("ruby_installer/2.6.3@bincrafters/stable")
+            self.build_requires("ruby_installer/2.7.3@nrel/stable")
         if not tools.which("bison"):
-            self.build_requires("bison_installer/3.3.2@bincrafters/stable")
+            self.build_requires("bison/3.8.2")
         if not tools.which("flex"):
-            self.build_requires("flex_installer/2.6.4@bincrafters/stable")
+            self.build_requires("flex/2.6.4")
         #if not tools.which("ninja"):
         self.build_requires("ninja/[>=1.9.0]")
         if not tools.which("cmake"):

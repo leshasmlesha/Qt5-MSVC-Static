@@ -19,24 +19,25 @@ jobs:
         config:
         - {
             name: "Windows MSVC Conan Release",
-            os: windows-latest
+            os: windows-2019
           }
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       
     - name: MSVC Build CMD
       uses: ilammy/msvc-dev-cmd@v1
       with:
         arch: x64
+        vsversion: 2019
     
     - name: Setup Arch
       shell: cmd
       run: echo set arch=x64> arch.cmd
 
     - name: Install Python 3
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v5
       with:
         python-version: '3.9'
     
@@ -91,7 +92,7 @@ jobs:
       run: qt pack
       
     - name: Upload artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: qt-release-x64
         path: qt5*.7z

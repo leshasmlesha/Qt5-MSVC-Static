@@ -1,7 +1,7 @@
 @echo off
 
 
-set MSVCVER=2022
+set MSVCVER=2019
 set QTVER=5.15.2
 set SSLVER=1.1.1p
 set QTWEBKIT_VER=5.212
