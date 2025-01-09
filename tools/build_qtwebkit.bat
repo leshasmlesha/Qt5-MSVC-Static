@@ -1,7 +1,7 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-set EXTPATH=%SRCDIR%\qtwebkit-5.212.0-alpha4
+set EXTPATH=%SRCDIR%\%EXTNAME%-%QTWEBKIT_VER%
 set QMAKE=%QTINSTALLDIR%\bin\qmake.exe
 
 IF NOT "%EXTNAME%" == "" (
@@ -9,15 +9,13 @@ IF NOT "%EXTNAME%" == "" (
 	echo PATH: %EXTPATH%
 	echo QMAKE: %QMAKE%
 
-	set URL=https://github.com/qtwebkit/qtwebkit/releases/download/qtwebkit-5.212.0-alpha4/qtwebkit-5.212.0-alpha4.zip
-
-	cd %SRCDIR%
+	set URL=https://github.com/qtwebkit/qtwebkit.git
+	mkdir %EXTPATH%
+	cd %EXTPATH%
 	echo Downloading !URL!
-	curl %CURLOPTS% !URL!
+	git clone --depth 10 -b qtwebkit-5.212 !URL! .
 
-	rd %EXTPATH% /s /q
-	7z %ZOPTS% qtwebkit-5.212.0-alpha4.zip || exit /b %errorlevel%
-	cd ..
+	cd ../../
 	
 	copy /y Tools\patches\qtwebkit\build-qtwebkit-conan.py %EXTPATH%\Tools\qt\build-qtwebkit-conan.py
 	copy /y Tools\patches\qtwebkit\conan_dependencies_version.py %EXTPATH%\Tools\qt\conan_dependencies_version.py
@@ -41,15 +39,15 @@ IF NOT "%EXTNAME%" == "" (
 	)
 	if "%if_debug%" == "debug" (
 		if "%arch%" == "x86" (
-			py Tools\qt\build-qtwebkit-conan.py --compiler=msvc --build_type=Debug --arch=x86 --qt=%QTINSTALLDIR% --install --cmakeargs="-DENABLE_WEBKIT2=OFF -DENABLE_OPENGL=OFF -DENABLE_TOOLS=OFF -DENABLE_TEST_SUPPORT=OFF -DENABLE_API_TESTS=OFF -DENABLE_GEOLOCATION=OFF -DENABLE_DEVICE_ORIENTATION=OFF"
+			py Tools\qt\build-qtwebkit-conan.py --compiler=msvc --build_type=Debug --arch=x86 --qt=%QTINSTALLDIR% --install --cmakeargs="-DENABLE_WEBKIT2=OFF -DENABLE_OPENGL=OFF -DENABLE_TOOLS=OFF -DENABLE_TEST_SUPPORT=OFF -DUSE_STATIC_RUNTIME=ON -DENABLE_API_TESTS=OFF -DENABLE_GEOLOCATION=OFF -DENABLE_DEVICE_ORIENTATION=OFF"
 		) else (
-			py Tools\qt\build-qtwebkit-conan.py --compiler=msvc --build_type=Debug --qt=%QTINSTALLDIR% --install --cmakeargs="-DENABLE_WEBKIT2=OFF -DENABLE_OPENGL=OFF -DENABLE_TOOLS=OFF -DENABLE_TEST_SUPPORT=OFF -DENABLE_API_TESTS=OFF -DENABLE_GEOLOCATION=OFF -DENABLE_DEVICE_ORIENTATION=OFF"
+			py Tools\qt\build-qtwebkit-conan.py --compiler=msvc --build_type=Debug --qt=%QTINSTALLDIR% --install --cmakeargs="-DENABLE_WEBKIT2=OFF -DENABLE_OPENGL=OFF -DENABLE_TOOLS=OFF -DENABLE_TEST_SUPPORT=OFF -DUSE_STATIC_RUNTIME=ON -DENABLE_API_TESTS=OFF -DENABLE_GEOLOCATION=OFF -DENABLE_DEVICE_ORIENTATION=OFF"
 		)
 	) else (
 		if "%arch%" == "x86" (
-			py Tools\qt\build-qtwebkit-conan.py --compiler=msvc --arch=x86 --qt=%QTINSTALLDIR% --install --cmakeargs="-DENABLE_WEBKIT2=OFF -DENABLE_OPENGL=OFF -DENABLE_TOOLS=OFF -DENABLE_TEST_SUPPORT=OFF -DENABLE_API_TESTS=OFF -DENABLE_GEOLOCATION=OFF -DENABLE_DEVICE_ORIENTATION=OFF"
+			py Tools\qt\build-qtwebkit-conan.py --compiler=msvc --arch=x86 --qt=%QTINSTALLDIR% --install --cmakeargs="-DENABLE_WEBKIT2=OFF -DENABLE_OPENGL=OFF -DENABLE_TOOLS=OFF -DENABLE_TEST_SUPPORT=OFF -DUSE_STATIC_RUNTIME=ON -DENABLE_API_TESTS=OFF -DENABLE_GEOLOCATION=OFF -DENABLE_DEVICE_ORIENTATION=OFF"
 		) else (
-			py Tools\qt\build-qtwebkit-conan.py --compiler=msvc --qt=%QTINSTALLDIR% --install --cmakeargs="-DENABLE_WEBKIT2=OFF -DENABLE_OPENGL=OFF -DENABLE_TOOLS=OFF -DENABLE_TEST_SUPPORT=OFF -DENABLE_API_TESTS=OFF -DENABLE_GEOLOCATION=OFF -DENABLE_DEVICE_ORIENTATION=OFF"
+			py Tools\qt\build-qtwebkit-conan.py --compiler=msvc --qt=%QTINSTALLDIR% --install --cmakeargs="-DENABLE_WEBKIT2=OFF -DENABLE_OPENGL=OFF -DENABLE_TOOLS=OFF -DENABLE_TEST_SUPPORT=OFF -DUSE_STATIC_RUNTIME=ON -DENABLE_API_TESTS=OFF -DENABLE_GEOLOCATION=OFF -DENABLE_DEVICE_ORIENTATION=OFF"
 		)
 	)
 	IF %errorlevel% NEQ 0 exit /b %errorlevel%

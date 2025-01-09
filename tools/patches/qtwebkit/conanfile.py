@@ -155,7 +155,6 @@ class QtWebKitConan(ConanFile):
 
         cmake.configure(args=cmake_flags)
         cmake.build(args=ninja_flags)
-        cmake.build()
         cmake.install()
 
     def imports(self):
