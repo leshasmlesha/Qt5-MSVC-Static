@@ -168,7 +168,7 @@ class QtWebKitConan(ConanFile):
             self.copy("sqlite3.lib", "./lib", "lib")
             self.copy("zlib.lib", "./lib", "lib")
             self.copy("jpeg-static.lib", "./lib", "lib")
-            self.copy("libpng16.lib", "./lib", "lib")
+            self.copy("libpng16_static.lib", "./lib", "lib")
             self.copy("webp.lib", "./lib", "lib")
 
     def package(self):
