@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  HOST_N_CORES: 2
+  HOST_N_CORES: 4
   NINJA_STATUS: "[%f/%t %o/sec] "
 
 jobs:

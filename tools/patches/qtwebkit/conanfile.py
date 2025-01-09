@@ -145,6 +145,9 @@ class QtWebKitConan(ConanFile):
         else:
             ninja_flags = None
 
+        if "CONAN_CPU_COUNT" in os.environ:
+            os.environ['NINJAFLAGS'] = '-j ' + os.environ['CONAN_CPU_COUNT']
+
         if self.options.install_prefix:
             cmake.definitions["CMAKE_INSTALL_PREFIX"] = str(self.options.install_prefix)
         else:

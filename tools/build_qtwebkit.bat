@@ -1,7 +1,7 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-set EXTPATH=%SRCDIR%\%EXTNAME%-%QTWEBKIT_VER%
+set EXTPATH=%SRCDIR%\qtwebkit-5.212.0-alpha4
 set QMAKE=%QTINSTALLDIR%\bin\qmake.exe
 
 IF NOT "%EXTNAME%" == "" (
@@ -9,13 +9,15 @@ IF NOT "%EXTNAME%" == "" (
 	echo PATH: %EXTPATH%
 	echo QMAKE: %QMAKE%
 
-	set URL=https://github.com/qt/qtwebkit.git
-	mkdir %EXTPATH%
-	cd %EXTPATH%
-	echo Downloading !URL!
-	git clone --depth 10 -b 5.212 !URL! .
+	set URL=https://github.com/qtwebkit/qtwebkit/releases/download/qtwebkit-5.212.0-alpha4/qtwebkit-5.212.0-alpha4.zip
 
-	cd ../../
+	cd %SRCDIR%
+	echo Downloading !URL!
+	curl %CURLOPTS% !URL!
+
+	rd %EXTPATH% /s /q
+	7z %ZOPTS% qtwebkit-5.212.0-alpha4.zip || exit /b %errorlevel%
+	cd ..
 	
 	copy /y Tools\patches\qtwebkit\build-qtwebkit-conan.py %EXTPATH%\Tools\qt\build-qtwebkit-conan.py
 	copy /y Tools\patches\qtwebkit\conan_dependencies_version.py %EXTPATH%\Tools\qt\conan_dependencies_version.py
