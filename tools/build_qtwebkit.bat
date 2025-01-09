@@ -9,11 +9,11 @@ IF NOT "%EXTNAME%" == "" (
 	echo PATH: %EXTPATH%
 	echo QMAKE: %QMAKE%
 
-	set URL=https://github.com/qtwebkit/qtwebkit.git
+	set URL=https://github.com/qt/qtwebkit.git
 	mkdir %EXTPATH%
 	cd %EXTPATH%
 	echo Downloading !URL!
-	git clone --depth 10 -b qtwebkit-5.212 !URL! .
+	git clone --depth 10 -b 5.212 !URL! .
 
 	cd ../../
 	
