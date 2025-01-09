@@ -125,7 +125,7 @@ def create_profile(compiler, arch):
     if arch == 'default':
         arch = profile.get('arch_build')
 
-    profile.update('arch', arch)
+    profile.update('arch', 'x86_64')
     profile.update('arch_build', arch)
 
     if platform.system() == "Windows" and compiler == "gcc":
