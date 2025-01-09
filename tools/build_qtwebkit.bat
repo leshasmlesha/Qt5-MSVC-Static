@@ -14,6 +14,7 @@ IF NOT "%EXTNAME%" == "" (
 	cd %EXTPATH%
 	echo Downloading !URL!
 	git clone --depth 10 -b qtwebkit-5.212 !URL! .
+	git checkout .
 
 	cd ../../
 	
